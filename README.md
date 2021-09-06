@@ -1,13 +1,13 @@
 # tools-prac
 Practicing/learning basic usage of popular devops tools 
 
-currently provisions:
+Terraform provisions on AWS:
   - vpc
   - internet gateway
   - route table
   - subnet
   - security group
 
-for an ec2 instance running ubuntu server
+for an ec2 instance running an ubuntu server
 
-ansible is used to install nginx and start the process 
+Ansible is used to configure the web server
