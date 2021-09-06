@@ -1,7 +1,6 @@
 locals {
     ssh_user = "ubuntu"
     key_name = "main-key"
-    private_key_path = "~/Documents/keys/main-key.pem"
 }
 
 provider "aws" {
@@ -118,12 +117,9 @@ resource "aws_eip" "one" {
 #make the server instance
 resource "aws_instance" "web-server-instance" {
     ami                         = "ami-0747bdcabd34c712a"
-    #subnet_id                   = aws_subnet.subnet-1.id
     instance_type               = "t2.micro"
     availability_zone           = "us-east-1a"
     key_name                    = local.key_name
-    #associate_public_ip_address = true
-    #security_groups             = [aws_security_group.allow_web.id]
 
     network_interface {
       device_index = 0
