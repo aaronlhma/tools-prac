@@ -4,5 +4,10 @@
   remote_user: ubuntu
   become: yes
 
+  pre_tasks:
+    - name: installs python before nginx
+      apt:
+        name: python
+        state: latest
   roles:
   - nginx

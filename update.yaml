@@ -1,0 +1,7 @@
+---
+- hosts: proj2servers
+  become: true
+  become_user: root
+  tasks:
+  - name: updates apt repo and cache
+    apt: update_cache=yes
