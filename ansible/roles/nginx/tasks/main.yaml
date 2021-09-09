@@ -1,0 +1,18 @@
+---
+- name: nginx latest ver
+  apt:
+    name: nginx
+    state: latest
+    
+- name: copies index.html to host machine
+  template: 
+    src: "index.html.j2"
+    dest: "/var/www/html/index.html"    
+- name: restarts nginx server
+  systemd:
+    state: restarted
+    name: nginx
+- name: make sure nginx is running
+  systemd:
+    state: started
+    name: nginx

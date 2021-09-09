@@ -1,10 +1,11 @@
 locals {
-    ssh_user = "ubuntu"
     key_name = "main-key"
+    instance_count = 1
 }
 
 provider "aws" {
     region ="us-east-1"
+    profile = "devops_learn"
 }
 
 resource "aws_vpc" "prod-vpc"{
@@ -114,7 +115,7 @@ resource "aws_eip" "one" {
 
 #make the server instance
 resource "aws_instance" "web-server-instance" {
-    count                       = 2                       #creates x copies of this resource
+    count                       = local.instance_count   
     ami                         = "ami-0747bdcabd34c712a" #os to be installed
     instance_type               = "t2.micro"              #type of instance
     availability_zone           = "us-east-1a"            
@@ -131,7 +132,6 @@ resource "aws_instance" "web-server-instance" {
     }
 }
 
-output "server_ip" {
-    value = aws_instance.web-server-instance.public_ip            #outputs the eip to console
+output "ec2" {
+    value = aws_instance.web-server-instance.*.public_ip
 }
-
