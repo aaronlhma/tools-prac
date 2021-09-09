@@ -1,6 +1,6 @@
 ---
 - name: installs & run nginx
-  hosts: all
+  hosts: webservers
   remote_user: ubuntu
   become: yes
 
@@ -16,3 +16,4 @@
         state: latest
   roles:
   - nginx
+  - docker
