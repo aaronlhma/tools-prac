@@ -103,6 +103,15 @@ resource "aws_network_interface" "jenkins-nic"{
 
 }
 
+resource "aws_eip" "one" {
+    #creates elastic ip for public ip that stays the same 
+    vpc = true #if inside a vpc
+    network_interface =aws_network_interface.jenkins-nic.id #connect to the nic
+    associate_with_private_ip = "10.0.2.50"     #assigns eip to the private ip in the nic
+
+    depends_on = [aws_internet_gateway.gw]     # need the gateway to create eip
+}
+
 resource "aws_instance" "jenkins" {
     count                       = local.instance_count   
     ami                         = "ami-0747bdcabd34c712a" #os to be installed

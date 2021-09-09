@@ -1,6 +1,6 @@
 ---
 
-- name: confnig & provision jenkins
+- name: config & provision jenkins
   hosts: jenkins
   tasks:
     - name: install java for jenkins
