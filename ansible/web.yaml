@@ -12,7 +12,7 @@
         state: latest
     - name: install pip 
       apt:
-        name: python3.pip3
+        name: python3-pip
         state: latest
   roles:
   - nginx
